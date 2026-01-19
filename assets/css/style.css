@@ -1,0 +1,156 @@
+:root {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --text: #0f172a;
+  --muted: #64748b;
+  --primary: #2563eb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1.5rem;
+}
+
+/* HEADER */
+.header {
+  background: white;
+  border-bottom: 1px solid var(--border);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.profile img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.subtitle {
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.location {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* BUTTONS */
+.actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--text);
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.btn.primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+}
+
+/* CARDS */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card h2 {
+  margin-bottom: 1rem;
+}
+
+/* TAGS */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tags span {
+  background: #f1f5f9;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+/* PROJECTS */
+.project {
+  margin-bottom: 1rem;
+}
+
+.project h3 {
+  font-size: 1rem;
+}
+
+/* LISTS */
+.list {
+  list-style: none;
+}
+
+.list li {
+  margin-bottom: 0.5rem;
+}
+
+.timeline {
+  list-style: none;
+}
+
+.timeline li {
+  margin-bottom: 1rem;
+}
+
+.timeline span {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
