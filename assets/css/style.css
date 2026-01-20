@@ -804,3 +804,97 @@ body {
     width: 100%;
   }
 }
+
+/* Education Styles */
+.education-item {
+  margin-bottom: 1.5rem;
+}
+
+.education-item h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.education-school {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.education-year {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Experience Timeline Styles */
+.experience-timeline {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.experience-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.35rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.experience-item {
+  position: relative;
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.experience-dot {
+  position: absolute;
+  left: -1.15rem;
+  top: 0.35rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  background: var(--primary);
+  border-radius: 50%;
+  border: 2px solid var(--card);
+}
+
+.experience-content h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.experience-company {
+  margin: 0.1rem 0;
+  font-size: 0.85rem;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.experience-year {
+  margin: 0.1rem 0 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* Dark mode support for education and experience */
+#dark-toggle:checked ~ * .education-school,
+#dark-toggle:checked ~ * .experience-company {
+  color: var(--primary);
+}
+
+#dark-toggle:checked ~ * .experience-timeline::before {
+  background: var(--border);
+}
+
+#dark-toggle:checked ~ * .experience-dot {
+  background: var(--primary);
+  border-color: var(--card);
+}
