@@ -110,6 +110,13 @@ body {
   font-size: 1.25rem;
 }
 
+.card h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
 .card h4 {
   margin-top: 1rem;
   margin-bottom: 0.5rem;
