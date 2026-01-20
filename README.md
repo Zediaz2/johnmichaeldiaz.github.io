@@ -5,7 +5,7 @@
 This website showcases my background, skills, projects, and experience as an **IT Professional and Software Developer**.
 
 🌐 **Live Site:**  
-👉 https://johnmichaeldiaz.github.io
+👉 zediaz2.github.io/johnmichaeldiaz.github.io/
 
 ---
 
