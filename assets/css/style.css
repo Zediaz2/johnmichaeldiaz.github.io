@@ -593,3 +593,214 @@ body {
     font-size: 0.8rem;
   }
 }
+
+
+/* Email/Contact Modal Styles */
+.contact-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  animation: fadeIn 0.3s ease;
+}
+
+.contact-modal.active {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.contact-modal-content {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+  position: relative;
+  z-index: 1001;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.contact-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.contact-modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--text);
+}
+
+.close-contact-btn {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s ease;
+  background: none;
+  border: none;
+  padding: 0;
+  line-height: 1;
+}
+
+.close-contact-btn:hover {
+  color: var(--text);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.form-group label .required {
+  color: var(--primary);
+  margin-left: 0.25rem;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--muted);
+}
+
+.contact-form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.contact-form-actions button {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact-form-actions .send-btn {
+  background: var(--primary);
+  color: white;
+}
+
+.contact-form-actions .send-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.contact-form-actions .cancel-btn {
+  background: var(--border);
+  color: var(--text);
+}
+
+.contact-form-actions .cancel-btn:hover {
+  background: var(--muted);
+  color: white;
+}
+
+/* Dark mode support for contact modal */
+#dark-toggle:checked ~ * .contact-modal-content {
+  background-color: var(--card);
+  border-color: var(--border);
+}
+
+#dark-toggle:checked ~ * .form-group input,
+#dark-toggle:checked ~ * .form-group textarea {
+  background-color: var(--bg);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+#dark-toggle:checked ~ * .form-group input:focus,
+#dark-toggle:checked ~ * .form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+}
+
+#dark-toggle:checked ~ * .contact-form-actions .send-btn:hover {
+  background: #0ea5e9;
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+}
+
+/* Mobile responsiveness for contact modal */
+@media (max-width: 768px) {
+  .contact-modal-content {
+    width: 95%;
+    padding: 1.5rem;
+  }
+
+  .contact-modal-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .contact-form {
+    gap: 1rem;
+  }
+
+  .contact-form-actions {
+    flex-direction: column;
+  }
+
+  .contact-form-actions button {
+    width: 100%;
+  }
+}

@@ -89,3 +89,53 @@ document.addEventListener('keydown', function(e) {
     closeLightbox();
   }
 });
+
+// Contact Modal Functionality
+const contactBtn = document.getElementById("contactBtn");
+const contactModal = document.getElementById("contactModal");
+const closeContactModals = document.querySelectorAll("#closeContactModal");
+const contactForm = document.getElementById("contactForm");
+
+// Open contact modal
+contactBtn.addEventListener("click", function(e) {
+  e.preventDefault();
+  contactModal.classList.add("active");
+  document.body.style.overflow = "hidden";
+});
+
+// Close contact modal - handles both the X button and Cancel button
+closeContactModals.forEach(btn => {
+  btn.addEventListener("click", function() {
+    contactModal.classList.remove("active");
+    document.body.style.overflow = "auto";
+  });
+});
+
+// Close modal when clicking outside
+window.addEventListener("click", function(e) {
+  if (e.target === contactModal) {
+    contactModal.classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+});
+
+// Handle contact form submission
+contactForm.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById("visitorName").value;
+  const email = document.getElementById("visitorEmail").value;
+  const subject = document.getElementById("subject").value;
+  const message = document.getElementById("message").value;
+
+  // Create mailto link with form data
+  const mailtoLink = `mailto:johnmichaeldiaz.102403@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+
+  // Open default email client
+  window.location.href = mailtoLink;
+
+  // Close modal and reset form
+  contactModal.classList.remove("active");
+  document.body.style.overflow = "auto";
+  contactForm.reset();
+});
