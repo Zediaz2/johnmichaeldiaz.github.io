@@ -20,18 +20,36 @@
 
 <header class="header">
   <div class="container header-content">
-    <div>
+
+    <div class="header-left">
       <h1>John Michael G. Diaz</h1>
-      <p class="subtitle">Entry-Level Software Developer • BSIT Graduate • Website Developer</p>
+      <p class="subtitle">Entry-Level Software Developer • BSIT Graduate</p>
     </div>
 
-    <div class="actions">
+    <!-- Desktop Actions -->
+    <div class="actions desktop-actions">
       <a class="btn" href="#" id="contactBtn">Send Email</a>
       <a class="btn" href="assets/docs/John-Michael-G-Diaz-CV.pdf" target="_blank">View CV</a>
       <a class="btn" href="assets/docs/John-Michael-G-Diaz-CV.pdf" download>Download CV</a>
     </div>
+
+    <!-- Hamburger -->
+    <button class="hamburger" id="hamburgerBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a class="btn" href="#" id="mobileContactBtn">Send Email</a>
+    <a class="btn" href="assets/docs/John-Michael-G-Diaz-CV.pdf" target="_blank">View CV</a>
+    <a class="btn" href="assets/docs/John-Michael-G-Diaz-CV.pdf" download>Download CV</a>
   </div>
 </header>
+
 
 <section class="hero">
   <div class="container hero-grid">
@@ -237,7 +255,6 @@
 
       <div class="contact-form-actions">
         <button type="submit" class="send-btn">Send Email</button>
-        <button type="button" id="closeContactModal" class="btn-cancel">Cancel</button>
       </div>
     </form>
   </div>

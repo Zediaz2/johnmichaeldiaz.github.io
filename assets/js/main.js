@@ -1,11 +1,52 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute('href'))
-      .scrollIntoView({ behavior: 'smooth' });
+
+// ============================================
+// UTILITY FUNCTIONS
+// ============================================
+
+/**
+ * Safely query DOM elements with error handling
+ */
+const DOM = {
+  query: (selector) => {
+    const element = document.querySelector(selector);
+    if (!element) console.warn(`Element not found: ${selector}`);
+    return element;
+  },
+  queryAll: (selector) => document.querySelectorAll(selector)
+};
+
+/**
+ * Debounce function to prevent excessive function calls
+ */
+function debounce(func, delay = 300) {
+  let timeoutId;
+  return function(...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => func.apply(this, args), delay);
+  };
+}
+
+// ============================================
+// SMOOTH SCROLLING
+// ============================================
+
+function initSmoothScrolling() {
+  DOM.queryAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      const targetElement = DOM.query(targetId);
+      
+      if (targetElement) {
+        e.preventDefault();
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
   });
-});
+}
+
+// ============================================
+// PROJECT GALLERY MANAGEMENT
+// ============================================
 
 const projectGalleries = {
   pos: {
@@ -31,111 +72,268 @@ const projectGalleries = {
   }
 };
 
-function openGallery(projectKey) {
-  const modal = document.getElementById("galleryModal");
-  const gallery = document.getElementById("modalGallery");
-  const title = document.getElementById("modalTitle");
+class GalleryManager {
+  constructor() {
+    this.modal = DOM.query("#galleryModal");
+    this.gallery = DOM.query("#modalGallery");
+    this.title = DOM.query("#modalTitle");
+    this.lightbox = DOM.query("#imageLightbox");
+    this.lightboxImg = DOM.query("#lightboxImage");
+    this.currentImageIndex = 0;
+    this.currentImages = [];
+    this.init();
+  }
 
-  gallery.innerHTML = "";
-  title.textContent = projectGalleries[projectKey].title;
+  init() {
+    this.setupEventListeners();
+  }
 
-  projectGalleries[projectKey].images.forEach(src => {
-    const img = document.createElement("img");
-    img.src = src;
-    img.alt = "Project image";
-    img.addEventListener('click', function() {
-      openLightbox(src);
+  setupEventListeners() {
+    // Close gallery when clicking outside
+    window.addEventListener('click', (e) => {
+      if (e.target === this.modal) this.closeGallery();
+      if (e.target === this.lightbox) this.closeLightbox();
     });
-    gallery.appendChild(img);
-  });
 
-  modal.style.display = "block";
-  document.body.style.overflow = "hidden";
+    // Close lightbox with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === "Escape") this.closeLightbox();
+    });
+
+    // Lightbox navigation
+    document.addEventListener('keydown', (e) => {
+      if (this.lightbox.style.display === "block") {
+        if (e.key === "ArrowLeft") this.previousImage();
+        if (e.key === "ArrowRight") this.nextImage();
+      }
+    });
+  }
+
+  openGallery(projectKey) {
+    if (!projectGalleries[projectKey]) {
+      console.error(`Project gallery not found: ${projectKey}`);
+      return;
+    }
+
+    const project = projectGalleries[projectKey];
+    this.currentImages = project.images;
+    this.currentImageIndex = 0;
+
+    this.gallery.innerHTML = "";
+    this.title.textContent = project.title;
+
+    project.images.forEach((src, index) => {
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = `${project.title} - Image ${index + 1}`;
+      img.loading = "lazy";
+      img.addEventListener('click', () => this.openLightbox(index));
+      this.gallery.appendChild(img);
+    });
+
+    this.modal.style.display = "block";
+    document.body.style.overflow = "hidden";
+  }
+
+  closeGallery() {
+    this.modal.style.display = "none";
+    document.body.style.overflow = "auto";
+  }
+
+  openLightbox(imageIndex) {
+    this.currentImageIndex = imageIndex;
+    this.lightboxImg.src = this.currentImages[imageIndex];
+    this.lightbox.style.display = "block";
+    document.body.style.overflow = "hidden";
+  }
+
+  closeLightbox() {
+    this.lightbox.style.display = "none";
+    document.body.style.overflow = "auto";
+  }
+
+  nextImage() {
+    this.currentImageIndex = (this.currentImageIndex + 1) % this.currentImages.length;
+    this.lightboxImg.src = this.currentImages[this.currentImageIndex];
+  }
+
+  previousImage() {
+    this.currentImageIndex = (this.currentImageIndex - 1 + this.currentImages.length) % this.currentImages.length;
+    this.lightboxImg.src = this.currentImages[this.currentImageIndex];
+  }
+}
+
+// Global gallery instance
+const galleryManager = new GalleryManager();
+
+// Wrapper functions for HTML onclick handlers
+function openGallery(projectKey) {
+  galleryManager.openGallery(projectKey);
 }
 
 function closeGallery() {
-  document.getElementById("galleryModal").style.display = "none";
-  document.body.style.overflow = "auto";
+  galleryManager.closeGallery();
 }
 
 function openLightbox(imageSrc) {
-  const lightbox = document.getElementById("imageLightbox");
-  const lightboxImg = document.getElementById("lightboxImage");
-  lightboxImg.src = imageSrc;
-  lightbox.style.display = "block";
+  const index = galleryManager.currentImages.indexOf(imageSrc);
+  galleryManager.openLightbox(index);
 }
 
 function closeLightbox() {
-  document.getElementById("imageLightbox").style.display = "none";
+  galleryManager.closeLightbox();
 }
 
-/* Close modal when clicking outside */
-window.onclick = function (e) {
-  const modal = document.getElementById("galleryModal");
-  const lightbox = document.getElementById("imageLightbox");
-  
-  if (e.target === modal) {
-    closeGallery();
+// ============================================
+// CONTACT MODAL MANAGEMENT
+// ============================================
+
+class ContactModalManager {
+  constructor() {
+    this.modal = DOM.query("#contactModal");
+    this.contactBtn = DOM.query("#contactBtn");
+    this.closeButtons = DOM.queryAll("#closeContactModal");
+    this.form = DOM.query("#contactForm");
+    this.init();
   }
-  
-  if (e.target === lightbox) {
-    closeLightbox();
+
+  init() {
+    if (!this.modal || !this.contactBtn || !this.form) {
+      console.error("Contact modal elements not found");
+      return;
+    }
+    this.setupEventListeners();
   }
-};
 
-/* Close lightbox with Escape key */
-document.addEventListener('keydown', function(e) {
-  if (e.key === "Escape") {
-    closeLightbox();
+  setupEventListeners() {
+    // Open modal
+    this.contactBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      this.openModal();
+    });
+
+    // Close modal buttons
+    this.closeButtons.forEach(btn => {
+      btn.addEventListener("click", () => this.closeModal());
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener("click", (e) => {
+      if (e.target === this.modal) this.closeModal();
+    });
+
+    // Close modal with Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && this.modal.classList.contains("active")) {
+        this.closeModal();
+      }
+    });
+
+    // Form submission
+    this.form.addEventListener("submit", (e) => this.handleSubmit(e));
   }
-});
 
-// Contact Modal Functionality
-const contactBtn = document.getElementById("contactBtn");
-const contactModal = document.getElementById("contactModal");
-const closeContactModals = document.querySelectorAll("#closeContactModal");
-const contactForm = document.getElementById("contactForm");
+  openModal() {
+    this.modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+    // Focus on first input for accessibility
+    const firstInput = this.form.querySelector("input");
+    if (firstInput) firstInput.focus();
+  }
 
-// Open contact modal
-contactBtn.addEventListener("click", function(e) {
-  e.preventDefault();
-  contactModal.classList.add("active");
-  document.body.style.overflow = "hidden";
-});
-
-// Close contact modal - handles both the X button and Cancel button
-closeContactModals.forEach(btn => {
-  btn.addEventListener("click", function() {
-    contactModal.classList.remove("active");
+  closeModal() {
+    this.modal.classList.remove("active");
     document.body.style.overflow = "auto";
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("visitorName").value.trim();
+    const email = document.getElementById("visitorEmail").value.trim();
+    const subject = document.getElementById("subject").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    // Validation
+    if (!this.validateForm(name, email, subject, message)) {
+      return;
+    }
+
+    // Create mailto link with form data
+    const mailtoLink = `mailto:johnmichaeldiaz.102403@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+
+    // Open default email client
+    window.location.href = mailtoLink;
+
+    // Close modal and reset form
+    this.closeModal();
+    this.form.reset();
+  }
+
+  validateForm(name, email, subject, message) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!name || name.length < 2) {
+      alert("Please enter a valid name (at least 2 characters)");
+      return false;
+    }
+
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address");
+      return false;
+    }
+
+    if (!subject || subject.length < 3) {
+      alert("Please enter a subject (at least 3 characters)");
+      return false;
+    }
+
+    if (!message || message.length < 10) {
+      alert("Please enter a message (at least 10 characters)");
+      return false;
+    }
+
+    return true;
+  }
+}
+
+// Global contact modal instance
+const contactModalManager = new ContactModalManager();
+
+// ============================================
+// INITIALIZATION
+// ============================================
+
+document.addEventListener("DOMContentLoaded", function() {
+  initSmoothScrolling();
+  console.log("Portfolio initialized successfully");
+});
+
+// ===============================
+// MOBILE HAMBURGER MENU
+// ===============================
+const hamburgerBtn = document.getElementById("hamburgerBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+
+if (hamburgerBtn && mobileMenu) {
+  hamburgerBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("active");
+  });
+}
+
+// Close menu when clicking mobile links
+document.querySelectorAll(".mobile-menu a").forEach(link => {
+  link.addEventListener("click", () => {
+    mobileMenu.classList.remove("active");
   });
 });
 
-// Close modal when clicking outside
-window.addEventListener("click", function(e) {
-  if (e.target === contactModal) {
-    contactModal.classList.remove("active");
-    document.body.style.overflow = "auto";
-  }
-});
-
-// Handle contact form submission
-contactForm.addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  const name = document.getElementById("visitorName").value;
-  const email = document.getElementById("visitorEmail").value;
-  const subject = document.getElementById("subject").value;
-  const message = document.getElementById("message").value;
-
-  // Create mailto link with form data
-  const mailtoLink = `mailto:johnmichaeldiaz.102403@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-
-  // Open default email client
-  window.location.href = mailtoLink;
-
-  // Close modal and reset form
-  contactModal.classList.remove("active");
-  document.body.style.overflow = "auto";
-  contactForm.reset();
-});
+// Sync mobile Send Email button
+const mobileContactBtn = document.getElementById("mobileContactBtn");
+if (mobileContactBtn) {
+  mobileContactBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    mobileMenu.classList.remove("active");
+    document.getElementById("contactBtn").click();
+  });
+}
