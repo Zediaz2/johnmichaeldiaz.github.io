@@ -340,6 +340,59 @@ class ContactModalManager {
 const contactModalManager = new ContactModalManager();
 
 // ============================================
+// DARK MODE MANAGEMENT
+// ============================================
+
+class ThemeManager {
+  constructor() {
+    this.storageKey = "theme-preference";
+    this.init();
+  }
+
+  init() {
+    // Apply saved theme immediately (before DOM paints)
+    const saved = localStorage.getItem(this.storageKey);
+    if (saved) {
+      document.documentElement.setAttribute("data-theme", saved);
+    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      document.documentElement.setAttribute("data-theme", "dark");
+    }
+
+    // Bind toggle buttons
+    const desktopToggle = document.getElementById("themeToggle");
+    const mobileToggle = document.getElementById("mobileThemeToggle");
+
+    if (desktopToggle) {
+      desktopToggle.addEventListener("click", () => this.toggle());
+    }
+    if (mobileToggle) {
+      mobileToggle.addEventListener("click", () => this.toggle());
+    }
+
+    // Listen for system preference changes
+    window.matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        if (!localStorage.getItem(this.storageKey)) {
+          document.documentElement.setAttribute(
+            "data-theme",
+            e.matches ? "dark" : "light"
+          );
+        }
+      });
+  }
+
+  toggle() {
+    const current = document.documentElement.getAttribute("data-theme");
+    const next = current === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem(this.storageKey, next);
+  }
+}
+
+// Initialize theme manager
+const themeManager = new ThemeManager();
+
+// ============================================
 // INITIALIZATION
 // ============================================
 
