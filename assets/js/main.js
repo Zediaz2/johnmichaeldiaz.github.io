@@ -20,7 +20,7 @@ const DOM = {
  */
 function debounce(func, delay = 300) {
   let timeoutId;
-  return function(...args) {
+  return function (...args) {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => func.apply(this, args), delay);
   };
@@ -32,10 +32,10 @@ function debounce(func, delay = 300) {
 
 function initSmoothScrolling() {
   DOM.queryAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
       const targetElement = DOM.query(targetId);
-      
+
       if (targetElement) {
         e.preventDefault();
         targetElement.scrollIntoView({ behavior: 'smooth' });
@@ -52,22 +52,61 @@ const projectGalleries = {
   pos: {
     title: "POS & Inventory System",
     images: [
-      "assets/images/Gallery/POS-Android1.png",
-      "assets/images/Gallery/POS-Android2.png",
-      "assets/images/Gallery/Admin1.png",
-      "assets/images/Gallery/Admin2.png",
-      "assets/images/Gallery/Admin3.png",
-      "assets/images/Gallery/Admin4.png",
-      "assets/images/Gallery/Admin5.png",
-      "assets/images/Gallery/Admin6.png",
-      "assets/images/Gallery/Admin7.png",
-      "assets/images/Gallery/Admin8.png",
-      "assets/images/Gallery/Admin9.png",
-      "assets/images/Gallery/Admin10.png",
-      "assets/images/Gallery/Admin11.png",
-      "assets/images/Gallery/Admin12.png",
-      "assets/images/Gallery/Admin13.png",
-      "assets/images/Gallery/Admin14.png"
+      "assets/images/Gallery/pos/POS-Android1.png",
+      "assets/images/Gallery/pos/POS-Android2.png",
+      "assets/images/Gallery/pos/Admin1.png",
+      "assets/images/Gallery/pos/Admin2.png",
+      "assets/images/Gallery/pos/Admin3.png",
+      "assets/images/Gallery/pos/Admin4.png",
+      "assets/images/Gallery/pos/Admin5.png",
+      "assets/images/Gallery/pos/Admin6.png",
+      "assets/images/Gallery/pos/Admin7.png",
+      "assets/images/Gallery/pos/Admin8.png",
+      "assets/images/Gallery/pos/Admin9.png",
+      "assets/images/Gallery/pos/Admin10.png",
+      "assets/images/Gallery/pos/Admin11.png",
+      "assets/images/Gallery/pos/Admin12.png",
+      "assets/images/Gallery/pos/Admin13.png",
+      "assets/images/Gallery/pos/Admin14.png"
+    ]
+  },
+  internship: {
+    title: "WeSupport Inc. Inventory and Email Management",
+    images: [
+      "assets/images/Gallery/internship/Screenshot 2026-06-20 020243.png",
+      "assets/images/Gallery/internship/Screenshot 2026-06-20 020319.png",
+      "assets/images/Gallery/internship/Screenshot 2026-06-20 020326.png",
+      "assets/images/Gallery/internship/Screenshot 2026-06-20 020332.png",
+      "assets/images/Gallery/internship/Screenshot 2026-06-20 020340.png",
+      "assets/images/Gallery/internship/Screenshot 2026-06-20 020346.png",
+      "assets/images/Gallery/internship/Screenshot 2026-06-20 020351.png",
+      "assets/images/Gallery/internship/Screenshot 2026-06-20 020356.png",
+      "assets/images/Gallery/internship/Screenshot 2026-06-20 020402.png",
+      "assets/images/Gallery/internship/Screenshot 2026-06-20 020406.png",
+      "assets/images/Gallery/internship/Screenshot 2026-06-20 020412.png",
+      "assets/images/Gallery/internship/Screenshot 2026-06-20 020417.png",
+      "assets/images/Gallery/internship/Screenshot 2026-06-20 020422.png",
+      "assets/images/Gallery/internship/Screenshot 2026-06-20 020435.png",
+      "assets/images/Gallery/internship/Screenshot 2026-06-20 020440.png",
+      "assets/images/Gallery/internship/Screenshot 2026-06-20 020446.png",
+      "assets/images/Gallery/internship/Screenshot 2026-06-20 020451.png",
+      "assets/images/Gallery/internship/Screenshot 2026-06-20 020458.png",
+      "assets/images/Gallery/internship/Screenshot 2026-06-20 020512.png",
+      "assets/images/Gallery/internship/Screenshot 2026-06-20 020518.png"
+    ]
+  },
+
+  ojt_tracker: {
+    title: "Personal Project | OJT Tracker",
+    images: [
+      "assets/images/Gallery/ojt-tracker/Screenshot 2026-06-20 021548.png",
+      "assets/images/Gallery/ojt-tracker/Screenshot 2026-06-20 021600.png",
+      "assets/images/Gallery/ojt-tracker/Screenshot 2026-06-20 021606.png",
+      "assets/images/Gallery/ojt-tracker/Screenshot 2026-06-20 021610.png",
+      "assets/images/Gallery/ojt-tracker/Screenshot 2026-06-20 021614.png",
+      "assets/images/Gallery/ojt-tracker/Screenshot 2026-06-20 021619.png",
+      "assets/images/Gallery/ojt-tracker/Screenshot 2026-06-20 021625.png",
+      "assets/images/Gallery/ojt-tracker/Screenshot 2026-06-20 021632.png"
     ]
   }
 };
@@ -304,7 +343,7 @@ const contactModalManager = new ContactModalManager();
 // INITIALIZATION
 // ============================================
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   initSmoothScrolling();
   console.log("Portfolio initialized successfully");
 });
