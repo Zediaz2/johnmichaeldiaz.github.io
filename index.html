@@ -1,93 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>John Michael Diaz | Software Developer</title>
 
-  <meta name="description" content="Entry-level Software Developer specializing in Android POS systems, inventory management, and business software solutions.">
-  <meta name="keywords" content="Software Developer, Entry Level Developer, Android Developer, POS System, Kotlin, C#, MySQL">
+  <meta name="description"
+    content="Entry-level Software Developer specializing in Android POS systems, inventory management, and business software solutions.">
+  <meta name="keywords"
+    content="Software Developer, Entry Level Developer, Android Developer, POS System, Kotlin, C#, MySQL">
   <meta name="author" content="John Michael G. Diaz">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
 <body>
 
-<header class="header">
-  <div class="container header-content">
+  <header class="header">
+    <div class="container header-content">
 
-    <div class="header-left">
-      <h1>John Michael G. Diaz</h1>
-      <p class="subtitle">Entry-Level Software Developer • BSIT Graduate</p>
+      <div class="header-left">
+        <h1>John Michael G. Diaz</h1>
+        <p class="subtitle">Entry-Level Software Developer • BSIT Graduate</p>
+      </div>
+
+      <!-- Desktop Actions -->
+      <div class="actions desktop-actions">
+        <a class="btn" href="#" id="contactBtn">Send Email</a>
+        <a class="btn" href="assets/docs/John-Michael-G-Diaz-CV.pdf" target="_blank">View CV</a>
+        <a class="btn" href="assets/docs/John-Michael-G-Diaz-CV.pdf" download>Download CV</a>
+      </div>
+
+      <!-- Hamburger -->
+      <button class="hamburger" id="hamburgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
     </div>
 
-    <!-- Desktop Actions -->
-    <div class="actions desktop-actions">
-      <a class="btn" href="#" id="contactBtn">Send Email</a>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a class="btn" href="#" id="mobileContactBtn">Send Email</a>
       <a class="btn" href="assets/docs/John-Michael-G-Diaz-CV.pdf" target="_blank">View CV</a>
       <a class="btn" href="assets/docs/John-Michael-G-Diaz-CV.pdf" download>Download CV</a>
     </div>
-
-    <!-- Hamburger -->
-    <button class="hamburger" id="hamburgerBtn">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
-  </div>
-
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <a class="btn" href="#" id="mobileContactBtn">Send Email</a>
-    <a class="btn" href="assets/docs/John-Michael-G-Diaz-CV.pdf" target="_blank">View CV</a>
-    <a class="btn" href="assets/docs/John-Michael-G-Diaz-CV.pdf" download>Download CV</a>
-  </div>
-</header>
+  </header>
 
 
-<section class="hero">
-  <div class="container hero-grid">
+  <section class="hero">
+    <div class="container hero-grid">
 
-    <div class="hero-text">
-      <h2>I Build Practical Software<br>That Improves Business Operations</h2>
-      <p>
-        Bachelor of Science in Information Technology graduate with hands-on experience
-        developing POS systems, inventory management solutions, and data analytics tools.
-      </p>
-      <div class="hero-tags">
-        <span>Android (Kotlin)</span>
-        <span>C# / .NET</span>
-        <span>MySQL</span>
-        <span>Web Development</span>
+      <div class="hero-text">
+        <h2>I Build Practical Software<br>That Improves Business Operations</h2>
+        <p>
+          Bachelor of Science in Information Technology graduate with hands-on experience
+          developing POS systems, inventory management solutions, and data analytics tools.
+        </p>
+        <div class="hero-tags">
+          <span>Android (Kotlin)</span>
+          <span>C# / .NET</span>
+          <span>MySQL</span>
+          <span>Web Development</span>
+        </div>
       </div>
+
+      <div class="hero-profile">
+        <img src="assets/images/porfile.png" alt="John Michael Diaz">
+      </div>
+
     </div>
+  </section>
 
-    <div class="hero-profile">
-      <img src="assets/images/profile.png" alt="John Michael Diaz">
-    </div>
+  <main class="container grid">
 
-  </div>
-</section>
+    <section>
 
-<main class="container grid">
+      <div class="card">
+        <h3>Professional Summary</h3>
+        <p>
+          BSIT graduate seeking an entry-level software development role with strong
+          foundations in application development, databases, and system workflows.
+        </p>
+      </div>
 
-<section>
-
-  <div class="card">
-    <h3>Professional Summary</h3>
-    <p>
-      BSIT graduate seeking an entry-level software development role with strong
-      foundations in application development, databases, and system workflows.
-    </p>
-  </div>
-
-  <div class="card">
+      <div class="card">
         <h2>Tech Stack</h2>
 
         <h3>Programming & Development</h3>
@@ -102,7 +105,8 @@
 
         <h3>Systems & Tools</h3>
         <div class="tags">
-          <span>System Administration</span><span>Troubleshooting</span><span>Microsoft Office</span><span>Android Studio</span><span>Visual Studio</span>
+          <span>System Administration</span><span>Troubleshooting</span><span>Microsoft Office</span><span>Android
+            Studio</span><span>Visual Studio</span>
         </div>
 
         <h3>Soft Skills</h3>
@@ -111,155 +115,156 @@
         </div>
       </div>
 
-  <div class="card">
-    <h3>Projects</h3>
+      <div class="card">
+        <h3>Projects</h3>
 
-    <div class="project">
-      <h4>POS & Inventory System with Data Analytics</h4>
-      <p>
-        Designed and developed a POS and inventory system for a local pastry business.
-      </p>
+        <div class="project">
+          <h4>POS & Inventory System with Data Analytics</h4>
+          <p>
+            Designed and developed a POS and inventory system for a local pastry business.
+          </p>
 
-      <ul class="project-points">
-        <li>Sales analytics & inventory tracking</li>
-        <li>Automated daily reporting</li>
-        <li>Reduced human error</li>
-      </ul>
+          <ul class="project-points">
+            <li>Sales analytics & inventory tracking</li>
+            <li>Automated daily reporting</li>
+            <li>Reduced human error</li>
+          </ul>
 
-      <p class="project-tech">
-        Android (Kotlin) • C# • MySQL • JavaScript
-      </p>
+          <p class="project-tech">
+            Android (Kotlin) • C# • MySQL • JavaScript
+          </p>
 
-      <!-- MODAL TRIGGER -->
-      <button class="btn" onclick="openGallery('pos')">
-        View Project Photos
-      </button>
-    </div>
-  </div>
-
-</section>
-
-<aside>
-
-  <div class="card">
-    <h3>Education</h3>
-    <div class="education-item">
-      <h4>Bachelor of Science in Information Technology</h4>
-      <p class="education-school">STI College Sta Mesa</p>
-      <p class="education-year">2022 - Present</p>
-    </div>
-
-    <div class="education-item">
-      <h4>Senior High School - TVL (Technical Drafting)</h4>
-      <p class="education-school">Mariano Marcos Memorial High School</p>
-      <p class="education-year">2020 - 2022</p>
-    </div>
-
-    <div class="education-item">
-      <h4>Junior High School</h4>
-      <p class="education-school">Mariano Marcos Memorial High School</p>
-      <p class="education-year">2016 - 2020</p>
-    </div>
-
-    <div class="education-item">
-      <h4>Elementary School</h4>
-      <p class="education-school">J.Zamora Elementary School</p>
-      <p class="education-year">2010 - 2016</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>Experience</h3>
-    <div class="experience-timeline">
-      <div class="experience-item">
-        <div class="experience-dot"></div>
-        <div class="experience-content">
-          <h4>BS Information Technology</h4>
-          <p class="experience-company">STI College Sta Mesa</p>
-          <p class="experience-year">2022</p>
+          <!-- MODAL TRIGGER -->
+          <button class="btn" onclick="openGallery('pos')">
+            View Project Photos
+          </button>
         </div>
       </div>
-      <div class="experience-item">
-        <div class="experience-dot"></div>
-        <div class="experience-content">
-          <h4>Hello World!</h4>
-          <p class="experience-company">Wrote my first line of code</p>
-          <p class="experience-year">2022</p>
+
+    </section>
+
+    <aside>
+
+      <div class="card">
+        <h3>Education</h3>
+        <div class="education-item">
+          <h4>Bachelor of Science in Information Technology</h4>
+          <p class="education-school">STI College Sta Mesa</p>
+          <p class="education-year">2022 - Present</p>
+        </div>
+
+        <div class="education-item">
+          <h4>Senior High School - TVL (Technical Drafting)</h4>
+          <p class="education-school">Mariano Marcos Memorial High School</p>
+          <p class="education-year">2020 - 2022</p>
+        </div>
+
+        <div class="education-item">
+          <h4>Junior High School</h4>
+          <p class="education-school">Mariano Marcos Memorial High School</p>
+          <p class="education-year">2016 - 2020</p>
+        </div>
+
+        <div class="education-item">
+          <h4>Elementary School</h4>
+          <p class="education-school">J.Zamora Elementary School</p>
+          <p class="education-year">2010 - 2016</p>
         </div>
       </div>
+
+      <div class="card">
+        <h3>Experience</h3>
+        <div class="experience-timeline">
+          <div class="experience-item">
+            <div class="experience-dot"></div>
+            <div class="experience-content">
+              <h4>WeSupport Incorporated - Backend Developer Internship</h4>
+              <p class="experience-company">WeSupport Incorporated</p>
+              <p class="experience-year">2026</p>
+            </div>
+          </div>
+          <div class="experience-item">
+            <div class="experience-dot"></div>
+            <div class="experience-content">
+              <h4>Hello World!</h4>
+              <p class="experience-company">Wrote my first line of code</p>
+              <p class="experience-year">2022</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Professional Links</h3>
+        <ul class="list">
+          <li><a href="https://github.com/Zediaz2" target="_blank">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/john-michael-diaz-1151143a7/" target="_blank">LinkedIn</a></li>
+          <li><a href="https://www.facebook.com/zediaz24" target="_blank">Facebook</a></li>
+          <li><a href="https://www.instagram.com/michaeldiyaz/" target="_blank">Instagram</a></li>
+        </ul>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <!-- GALLERY MODAL -->
+  <div id="galleryModal" class="gallery-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Gallery</h2>
+        <span class="close-btn" onclick="closeGallery()">&times;</span>
+      </div>
+      <div id="modalGallery" class="modal-gallery"></div>
     </div>
   </div>
 
-  <div class="card">
-    <h3>Professional Links</h3>
-    <ul class="list">
-      <li><a href="https://github.com/Zediaz2" target="_blank">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/john-michael-diaz-1151143a7/" target="_blank">LinkedIn</a></li>
-      <li><a href="https://www.facebook.com/zediaz24" target="_blank">Facebook</a></li>
-      <li><a href="https://www.instagram.com/michaeldiyaz/" target="_blank">Instagram</a></li>
-    </ul>
-  </div>
-
-</aside>
-
-</main>
-
-<!-- GALLERY MODAL -->
-<div id="galleryModal" class="gallery-modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2 id="modalTitle">Gallery</h2>
-      <span class="close-btn" onclick="closeGallery()">&times;</span>
+  <!-- IMAGE LIGHTBOX -->
+  <div id="imageLightbox" class="image-lightbox">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <img id="lightboxImage" src="" alt="Enlarged image">
+    <div class="lightbox-nav">
+      <span class="lightbox-hint">Click to close or press ESC</span>
     </div>
-    <div id="modalGallery" class="modal-gallery"></div>
   </div>
-</div>
 
-<!-- IMAGE LIGHTBOX -->
-<div id="imageLightbox" class="image-lightbox">
-  <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-  <img id="lightboxImage" src="" alt="Enlarged image">
-  <div class="lightbox-nav">
-    <span class="lightbox-hint">Click to close or press ESC</span>
-  </div>
-</div>
+  <!-- Contact Modal -->
+  <div id="contactModal" class="contact-modal">
+    <div class="contact-modal-content">
+      <div class="contact-modal-header">
+        <h2>Send Me a Message</h2>
+        <button id="closeContactModal" class="close-contact-btn">&times;</button>
+      </div>
 
-<!-- Contact Modal -->
-<div id="contactModal" class="contact-modal">
-  <div class="contact-modal-content">
-    <div class="contact-modal-header">
-      <h2>Send Me a Message</h2>
-      <button id="closeContactModal" class="close-contact-btn">&times;</button>
+      <form id="contactForm" class="contact-form">
+        <div class="form-group">
+          <label for="visitorName">Your Name <span class="required">*</span></label>
+          <input type="text" id="visitorName" name="name" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="visitorEmail">Your Email <span class="required">*</span></label>
+          <input type="email" id="visitorEmail" name="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Subject <span class="required">*</span></label>
+          <input type="text" id="subject" name="subject" placeholder="What is this about?" required>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message <span class="required">*</span></label>
+          <textarea id="message" name="message" placeholder="Your message here..." required></textarea>
+        </div>
+
+        <div class="contact-form-actions">
+          <button type="submit" class="send-btn">Send Email</button>
+        </div>
+      </form>
     </div>
-    
-    <form id="contactForm" class="contact-form">
-      <div class="form-group">
-        <label for="visitorName">Your Name <span class="required">*</span></label>
-        <input type="text" id="visitorName" name="name" placeholder="Enter your name" required>
-      </div>
-
-      <div class="form-group">
-        <label for="visitorEmail">Your Email <span class="required">*</span></label>
-        <input type="email" id="visitorEmail" name="email" placeholder="Enter your email" required>
-      </div>
-
-      <div class="form-group">
-        <label for="subject">Subject <span class="required">*</span></label>
-        <input type="text" id="subject" name="subject" placeholder="What is this about?" required>
-      </div>
-
-      <div class="form-group">
-        <label for="message">Message <span class="required">*</span></label>
-        <textarea id="message" name="message" placeholder="Your message here..." required></textarea>
-      </div>
-
-      <div class="contact-form-actions">
-        <button type="submit" class="send-btn">Send Email</button>
-      </div>
-    </form>
   </div>
-</div>
 
-<script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
+
 </html>
